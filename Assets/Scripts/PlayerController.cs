@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] int actionPoints;
+    [SerializeField] GameObject player;
     void Start()
     {
         
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
         {
             Attack();
         }
+
 
            
     }
@@ -44,11 +46,12 @@ public class PlayerController : MonoBehaviour
     }
     private void Attack()
     {
-        Vector2 playerPosition = new Vector2(transform.position.x, transform.position.y);
-        RaycastHit2D hit = Physics2D.Raycast(playerPosition, EnemyController.instance.enemyPosition);
+        Vector2 playerPosition = new Vector2(player.transform.position.x, player.transform.position.y);
+        Vector2 enemyPosition = new Vector2(EnemyController.instance.transform.position.x, EnemyController.instance.transform.position.y);
+        RaycastHit2D hit = Physics2D.Raycast(playerPosition, enemyPosition-playerPosition);
         if (hit.collider.CompareTag("Enemy"))
         {
-            Debug.Log("IT FRIGGIN WORKS");
+            Debug.Log("frick");
         }
     }
 }

@@ -5,11 +5,6 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public static EnemyController instance;
-    //settings
-    [SerializeField] int timeLeft;
-    private bool gamePaused;
-    float points;
-
     private void Awake()
     {
         if (instance == null)
@@ -18,7 +13,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("There is more than one GameManager");
+            Debug.LogWarning("There is more than one enemy");
         }
     }
 
