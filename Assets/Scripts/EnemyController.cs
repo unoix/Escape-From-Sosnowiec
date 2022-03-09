@@ -16,12 +16,12 @@ public class EnemyController : MonoBehaviour
             Debug.LogWarning("There is more than one enemy");
         }
     }
+    
 
 
     public Vector2 enemyPosition;
     void Start()
-    {
-        
+    {  
     }
     void Update()
     {
