@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    int currentTurn;
+    bool isPlayerTurn;
     private void Awake()
     {
         if (instance == null)
@@ -15,5 +17,9 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogWarning("There is more than one GameManager");
         }
+    }
+    public void NextTurn()
+    {
+
     }
 }

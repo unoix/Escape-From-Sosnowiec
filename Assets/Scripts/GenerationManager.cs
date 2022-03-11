@@ -6,7 +6,7 @@ public class GenerationManager : MonoBehaviour
 {
     public static GenerationManager instance;
     [SerializeField] GameObject[] tiles;
-    [SerializeField] GameObject[] Enemies;
+    [SerializeField] GameObject enemyPrefab;
     [SerializeField] int amount;
     [SerializeField] int MapSizeX;
     [SerializeField] int MapSizeY;
@@ -26,7 +26,8 @@ public class GenerationManager : MonoBehaviour
     private void Start()
     {
         Generate(MapSizeX, MapSizeY);
-        GenerateEnemies(amount, MapSizeX, MapSizeY, Enemies);
+        GenerateEnemies(amount, MapSizeX, MapSizeY, enemyPrefab);
+        Debug.Log(GameObject.FindGameObjectsWithTag("Enemy"));
     }
     void Generate(int MapSizeX , int MapSizeY)
     {
@@ -44,20 +45,13 @@ public class GenerationManager : MonoBehaviour
         }
 
     }
-    GameObject[] GenerateEnemies(int amount, int MapSizeX, int MapSizeY, GameObject[] enemyPrefabs)
+    void GenerateEnemies(int amount, int MapSizeX, int MapSizeY, GameObject enemyPrefab)
     {
-        GameObject[] spawnedEnemies = null;
-        int addingIndex = 0;
         for (int generatedAmount = 0; generatedAmount <= amount; generatedAmount++)
         {
             int posX = Random.Range(0, MapSizeX);
             int posY = Random.Range(0, MapSizeY);
-            int index = Random.Range(0, enemyPrefabs.Length);
-            GameObject newEnemy = Instantiate(enemyPrefabs[index], new Vector3(posX, posY, 0), Quaternion.identity);
-            GameObject[] addedEnemy = { newEnemy };
-            spawnedEnemies.CopyTo(addedEnemy, addingIndex);
-            addingIndex++;
+            GameObject Enemy = Instantiate(enemyPrefab, new Vector3(posX, posY, 0), Quaternion.identity);
         }
-        return spawnedEnemies;
     }
 }
