@@ -10,6 +10,7 @@ public class GenerationManager : MonoBehaviour
     [SerializeField] int amount;
     [SerializeField] int MapSizeX;
     [SerializeField] int MapSizeY;
+    [SerializeField] GameObject player;
     private int index;
 
     private void Awake()
@@ -51,7 +52,14 @@ public class GenerationManager : MonoBehaviour
         {
             int posX = Random.Range(0, MapSizeX);
             int posY = Random.Range(0, MapSizeY);
-            GameObject Enemy = Instantiate(enemyPrefab, new Vector3(posX, posY, 0), Quaternion.identity);
+            if(new Vector3(posX,posY,player.transform.position.y) == player.transform.position)
+            {
+                generatedAmount--;
+            }
+            else
+            {
+                GameObject Enemy = Instantiate(enemyPrefab, new Vector3(posX, posY, 0), Quaternion.identity);
+            }
         }
     }
 }

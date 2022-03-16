@@ -37,39 +37,50 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hit;
         if (Input.GetKeyDown("w"))
         {
-            hit = Physics2D.Raycast(playerPosition, Vector2.up,1);
-            Debug.DrawRay(playerPosition, Vector2.up, Color.red ,10);
-            if (hit.collider.CompareTag("Enemy"))
+            foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             {
-                Debug.Log("Enemy");
-            }
-            else
-            {
-                player.transform.localPosition += new Vector3(0, 1, 0);
+                if(!(playerPosition.x++ == enemy.transform.position.x))
+                {
+                    player.transform.localPosition += Vector3.up;
+                    break;
+                }
+                else { Debug.Log("haha noob"); }
             }
         }
         else if (Input.GetKeyDown("a"))
         {
-            hit = Physics2D.Raycast(playerPosition, Vector2.left, 1);
-            if (!(hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Obstacle")))
+            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             {
-                player.transform.localPosition += new Vector3(-1, 0, 0);
+                if (!(playerPosition.y-- == enemy.transform.position.y))
+                {
+                    player.transform.localPosition += Vector3.left;
+                    break;
+                }
+                else { Debug.Log("haha noob"); }
             }
         }
         else if (Input.GetKeyDown("s"))
         {
-            hit = Physics2D.Raycast(playerPosition, Vector2.down, 1);
-            if (!(hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Obstacle")))
+            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             {
-                player.transform.localPosition += new Vector3(0, -1, 0);
+                if (!(playerPosition.x-- == enemy.transform.position.x))
+                {
+                    player.transform.localPosition += Vector3.down;
+                    break;
+                }
+                else { Debug.Log("haha noob"); }
             }
         }
         else if (Input.GetKeyDown("d"))
         {
-            hit = Physics2D.Raycast(playerPosition, Vector2.right, 1);
-            if (!(hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Obstacle")))
+            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             {
-                player.transform.localPosition += new Vector3(1, 0, 0);
+                if (!(playerPosition.x++ == enemy.transform.position.y))
+                {
+                    player.transform.localPosition += Vector3.right;
+                    break;
+                }
+                else { Debug.Log("haha noob"); }
             }
         }
         camera.transform.position = player.transform.position -= new Vector3(0,0,5);
