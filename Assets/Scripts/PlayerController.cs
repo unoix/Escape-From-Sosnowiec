@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    void Update()
+    void FixedUpdate()
     {
         playerPosition = new Vector3(player.transform.position.x, player.transform.position.y);
         Move();
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         {
             foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             {
-                if(!(playerPosition.x++ == enemy.transform.position.x))
+                if(!((playerPosition.x++ == enemy.transform.position.x)&&(playerPosition.y == enemy.transform.position.y)))
                 {
                     player.transform.localPosition += Vector3.up;
                     break;
